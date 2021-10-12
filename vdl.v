@@ -60,39 +60,39 @@ pub fn(this InitializeMode)value() u32{
 pub fn (this InitializeMode)mode(value u32) InitializeMode{
 	mut ret := InitializeMode.nothing
 
-	if value & u32(C.SDL_INIT_TIMER) != 0 {
+	if value & u32(C.SDL_INIT_TIMER) == u32(C.SDL_INIT_TIMER) {
 		ret = ret | InitializeMode.timer
 	}
 	
-	if value & u32(C.SDL_INIT_AUDIO) != 0 {
+	if value & u32(C.SDL_INIT_AUDIO) == u32(C.SDL_INIT_AUDIO) {
 		ret = ret | InitializeMode.audio
 	}
 	
-	if value & u32(C.SDL_INIT_VIDEO) != 0 {
+	if value & u32(C.SDL_INIT_VIDEO) == u32(C.SDL_INIT_VIDEO) {
 		ret = ret | InitializeMode.video
 	}
 	
-	if value & u32(C.SDL_INIT_JOYSTICK) != 0 {
+	if value & u32(C.SDL_INIT_JOYSTICK) == u32(C.SDL_INIT_JOYSTICK) {
 		ret = ret | InitializeMode.joystick
 	}
 	
-	if value & u32(C.SDL_INIT_HAPTIC) != 0 {
+	if value & u32(C.SDL_INIT_HAPTIC) == u32(C.SDL_INIT_HAPTIC) {
 		ret = ret | InitializeMode.haptic
 	}
 	
-	if value & u32(C.SDL_INIT_GAMECONTROLLER) != 0 {
+	if value & u32(C.SDL_INIT_GAMECONTROLLER) == u32(C.SDL_INIT_GAMECONTROLLER) {
 		ret = ret | InitializeMode.game_controller
 	}
 	
-	if value & u32(C.SDL_INIT_EVENTS) != 0 {
+	if value & u32(C.SDL_INIT_EVENTS) == u32(C.SDL_INIT_EVENTS) {
 		ret = ret | InitializeMode.events
 	}
 	
-	if value & u32(C.SDL_INIT_SENSOR) != 0 {
+	if value & u32(C.SDL_INIT_SENSOR) == u32(C.SDL_INIT_SENSOR) {
 		ret = ret | InitializeMode.sensor
 	}
 
-	if value & u32(C.SDL_INIT_EVERYTHING) != 0 {
+	if value & u32(C.SDL_INIT_EVERYTHING) == u32(C.SDL_INIT_EVERYTHING) {
 		ret = ret | InitializeMode.everything
 	}
 
