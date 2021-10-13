@@ -18,46 +18,46 @@ pub enum InitializeMode {
 pub fn(this InitializeMode)value() u32{
 	mut rc := 0
 
-	if this == InitializeMode.timer {
+	if this.has(.timer) {
 		rc |= C.SDL_INIT_TIMER
 	}
 
-	if this == InitializeMode.audio {
+	if this.has(.audio) {
 		rc |= C.SDL_INIT_AUDIO
 	}
 
-	if this == InitializeMode.joystick {
+	if this.has(.joystick) {
 		rc |= C.SDL_INIT_JOYSTICK
 	}
 
-	if this == InitializeMode.haptic {
+	if this.has(.haptic) {
 		rc |= C.SDL_INIT_HAPTIC
 	}
 
-	if this == InitializeMode.game_controller {
+	if this.has(.game_controller) {
 		rc |= C.SDL_INIT_GAMECONTROLLER
 	}
 
-	if this == InitializeMode.events {
+	if this.has(.events) {
 		rc |= C.SDL_INIT_EVENTS
 	}
 
-	if this == InitializeMode.sensor {
+	if this.has(.sensor) {
 		rc |= C.SDL_INIT_SENSOR
 	}
 	
-	if this == InitializeMode.no_parachute {
+	if this.has(.no_parachute) {
 		rc |= C.SDL_INIT_NOPARACHUTE
 	}
 
-	if this == InitializeMode.everything {
+	if this.has(.everything) {
 		rc |= C.SDL_INIT_EVERYTHING
 	}
 
 	return u32(rc)
 }
 
-pub fn (this InitializeMode)mode(value u32) InitializeMode{
+pub fn (mut this InitializeMode)mode(value u32){
 	mut ret := InitializeMode.nothing
 
 	if value & u32(C.SDL_INIT_TIMER) == u32(C.SDL_INIT_TIMER) {
@@ -96,7 +96,7 @@ pub fn (this InitializeMode)mode(value u32) InitializeMode{
 		ret = ret | InitializeMode.everything
 	}
 
-	return ret
+	this = ret
 }
 
 fn C.SDL_Init(int) int
