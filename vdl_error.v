@@ -30,6 +30,6 @@ pub enum ErrorCode {
 }
 
 fn C.SDL_Error(int) int
-pub fn error(error_code ErrorCode) {
+pub fn emit_error(error_code ErrorCode) {
 	C.SDL_Error(int(error_code))
 }
