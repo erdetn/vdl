@@ -1,5 +1,14 @@
 module vdl
 
+#include <stdio.h>
+#include <SDL2/SDL.h>
+
+#flag -I /usr/include
+#flag -I /usr/include/
+#flag -I /usr/include/SDL2
+
+#flag -lSDL2
+
 [flag]
 pub enum InitializeMode {
 	nothing         // 0
@@ -57,7 +66,7 @@ pub fn(this InitializeMode)value() u32{
 	return u32(rc)
 }
 
-pub fn (mut this InitializeMode)mode(value u32){
+pub fn (this InitializeMode)mode(value u32) InitializeMode{
 	mut ret := InitializeMode.nothing
 
 	if value & u32(C.SDL_INIT_TIMER) == u32(C.SDL_INIT_TIMER) {
@@ -96,7 +105,7 @@ pub fn (mut this InitializeMode)mode(value u32){
 		ret = ret | InitializeMode.everything
 	}
 
-	this = ret
+	return ret
 }
 
 fn C.SDL_Init(int) int
