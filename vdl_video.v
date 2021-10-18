@@ -133,10 +133,6 @@ pub fn (mut this WindowFlags)parse(value u32) {
 		ret = ret | WindowFlags.maximized
 	}
 
-	if value & u32(C.SDL_WINDOW_MOUSE_GRABBED) == u32(C.SDL_WINDOW_MOUSE_GRABBED) {
-		ret = ret | WindowFlags.mouse_grabbed
-	}
-
 	if value & u32(C.SDL_WINDOW_INPUT_FOCUS) == u32(C.SDL_WINDOW_INPUT_FOCUS) {
 		ret = ret | WindowFlags.input_focus
 	}
@@ -211,7 +207,6 @@ pub fn (this WindowFlags)value() u32 {
 	if this.has(.resizable){ ret |= u32(C.SDL_WINDOW_RESIZABLE) }
 	if this.has(.minimized){ ret |= u32(C.SDL_WINDOW_MINIMIZED) }
 	if this.has(.maximized){ ret |= u32(C.SDL_WINDOW_MAXIMIZED) }
-	if this.has(.mouse_grabbed){ ret |= u32(C.SDL_WINDOW_MOUSE_GRABBED) }
 	if this.has(.input_focus){ ret |= u32(C.SDL_WINDOW_INPUT_FOCUS) }
 	if this.has(.mouse_focus){ ret |= u32(C.SDL_WINDOW_MOUSE_FOCUS) }
 	if this.has(.fullscreen_desktop) { ret |= u32(C.SDL_WINDOW_FULLSCREEN_DESKTOP) }
@@ -260,10 +255,10 @@ pub fn (this WindowEventId)parse(value u32) WindowEventId{
 }
 
 pub enum DisplayEventId {
-	@none           = 0 // C.SDL_DISPLAYEVENT_NONE
-	orientation     = 1 // C.SDL_DISPLAYEVENT_ORIENTATION
-	connected       = 2 // C.SDL_DISPLAYEVENT_CONNECTED
-	disconnected    = 3 // C.SDL_DISPLAYEVENT_DISCONNECTED
+	@none           = C.SDL_DISPLAYEVENT_NONE
+	orientation     = C.SDL_DISPLAYEVENT_ORIENTATION
+	connected       = C.SDL_DISPLAYEVENT_CONNECTED
+	disconnected    = C.SDL_DISPLAYEVENT_DISCONNECTED
 }
 
 pub fn (this DisplayEventId)value() u32 {
@@ -275,17 +270,17 @@ pub fn (mut this DisplayEventId)parse(value u32) {
 }
 
 pub enum DisplayOrientation {
-	uknown            = 0 // C.SDL_ORIENTATION_UNKNOWN
-	landscape         = 1 // C.SDL_ORIENTATION_LANDSCAPE
-	landscape_flipped = 2 // C.SDL_ORIENTATION_LANDSCAPE_FLIPPED
-	portrait          = 3 // C.SDL_ORIENTATION_PORTRAIT
-	portrait_flipped  = 4 // C.SDL_ORIENTATION_PORTRAIT_FLIPPED
+	uknown            = C.SDL_ORIENTATION_UNKNOWN
+	landscape         = C.SDL_ORIENTATION_LANDSCAPE
+	landscape_flipped = C.SDL_ORIENTATION_LANDSCAPE_FLIPPED
+	portrait          = C.SDL_ORIENTATION_PORTRAIT
+	portrait_flipped  = C.SDL_ORIENTATION_PORTRAIT_FLIPPED
 }
 
 pub enum FlashOperation {
-	cancel            = 0 // C.SDL_FLASH_CANCEL
-	briefly           = 1 // C.SDL_FLASH_BRIEFLY
-	until_focused     = 2 // C.SDL_FLASH_UNTIL_FOCUSED
+	cancel            = C.SDL_FLASH_CANCEL
+	briefly           = C.SDL_FLASH_BRIEFLY
+	until_focused     = C.SDL_FLASH_UNTIL_FOCUSED
 }
 
 pub fn (this FlashOperation)value() u32 {
