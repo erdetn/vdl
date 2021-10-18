@@ -7,6 +7,8 @@ module vdl
 #flag -I /usr/include/
 #flag -I /usr/include/SDL2
 
+#flag -DSDL_DISABLE_IMMINTRIN_H
+
 #flag -lSDL2
 
 [flag]
