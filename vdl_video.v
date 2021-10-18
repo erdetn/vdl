@@ -2,6 +2,7 @@ module vdl
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_video.h>
 
 #flag -I /usr/include
 #flag -I /usr/include/
@@ -17,7 +18,9 @@ struct C.SDL_DisplayMode {
 	driverdata voidptr
 }
 
-pub type DisplayMode = C.SDL_DisplayMode
+pub struct DisplayMode {
+	ptr &C.SDL_DisplayMode
+}
 
 struct C.SDL_Window {}
 
@@ -46,15 +49,17 @@ pub fn (this Window) display_index() int {
 fn C.SDL_SetWindowDisplayMode(&C.SDL_Window, &C.SDL_DisplayMode) int
 pub fn (this Window)set_display_mode(display_mode DisplayMode) {
 	unsafe {
-		C.SDL_SetWindowDisplayMode(this.ptr, &display_mode)
+		C.SDL_SetWindowDisplayMode(this.ptr, display_mode.ptr)
 	}
 }
 
 fn C.SDL_GetWindowDisplayMode(&C.SDL_Window, &C.SDL_DisplayMode) int
 pub fn (this Window)display_mode() DisplayMode {
-	tmp := DisplayMode{0, 0, 0, 0, voidptr(0)}
+	tmp := DisplayMode{
+			ptr: &C.SDL_DisplayMode(voidptr(0))
+	}
 
-	unsafe { C.SDL_SetWindowDisplayMode(this.ptr, &tmp) }
+	unsafe { C.SDL_SetWindowDisplayMode(this.ptr, tmp.ptr) }
 	return tmp
 }
 
@@ -255,10 +260,10 @@ pub fn (this WindowEventId)parse(value u32) WindowEventId{
 }
 
 pub enum DisplayEventId {
-	@none           = C.SDL_DISPLAYEVENT_NONE
-	orientation     = C.SDL_DISPLAYEVENT_ORIENTATION
-	connected       = C.SDL_DISPLAYEVENT_CONNECTED
-	disconnected    = C.SDL_DISPLAYEVENT_DISCONNECTED
+	@none           = 0 // C.SDL_DISPLAYEVENT_NONE
+	orientation     = 1 // C.SDL_DISPLAYEVENT_ORIENTATION
+	connected       = 2 // C.SDL_DISPLAYEVENT_CONNECTED
+	disconnected    = 3 // C.SDL_DISPLAYEVENT_DISCONNECTED
 }
 
 pub fn (this DisplayEventId)value() u32 {
@@ -270,17 +275,17 @@ pub fn (mut this DisplayEventId)parse(value u32) {
 }
 
 pub enum DisplayOrientation {
-	uknown            = C.SDL_ORIENTATION_UNKNOWN
-	landscape         = C.SDL_ORIENTATION_LANDSCAPE
-	landscape_flipped = C.SDL_ORIENTATION_LANDSCAPE_FLIPPED
-	portrait          = C.SDL_ORIENTATION_PORTRAIT
-	portrait_flipped  = C.SDL_ORIENTATION_PORTRAIT_FLIPPED
+	uknown            = 0 // C.SDL_ORIENTATION_UNKNOWN
+	landscape         = 1 // C.SDL_ORIENTATION_LANDSCAPE
+	landscape_flipped = 2 // C.SDL_ORIENTATION_LANDSCAPE_FLIPPED
+	portrait          = 3 // C.SDL_ORIENTATION_PORTRAIT
+	portrait_flipped  = 4 // C.SDL_ORIENTATION_PORTRAIT_FLIPPED
 }
 
 pub enum FlashOperation {
-	cancel            = C.SDL_FLASH_CANCEL
-	briefly           = C.SDL_FLASH_BRIEFLY
-	until_focused     = C.SDL_FLASH_UNTIL_FOCUSED
+	cancel            = 0 // C.SDL_FLASH_CANCEL
+	briefly           = 1 // C.SDL_FLASH_BRIEFLY
+	until_focused     = 2 // C.SDL_FLASH_UNTIL_FOCUSED
 }
 
 pub fn (this FlashOperation)value() u32 {
@@ -446,11 +451,11 @@ pub fn get_num_display_mode(display_index int) int {
 fn C. SDL_GetDisplayMode(int, int, &C.SDL_DisplayMode) int
 pub fn get_display_mode(display_index int, mode_index int) ?DisplayMode {
 	tmp := DisplayMode {
-		0, 0, 0, 0, voidptr(0)
+		ptr: &C.SDL_DisplayMode(voidptr(0))
 	}
 
 	rc := unsafe {
-		C.SDL_GetDisplayMode(display_index, mode_index, &tmp)
+		C.SDL_GetDisplayMode(display_index, mode_index, tmp.ptr)
 	}
 
 	if rc != 0 {
@@ -462,11 +467,11 @@ pub fn get_display_mode(display_index int, mode_index int) ?DisplayMode {
 fn C.SDL_GetDesktopDisplayMode(int, &C.SDL_DisplayMode) int
 pub fn get_desktop_display_mode(display_index int) ?DisplayMode {
 	tmp := DisplayMode {
-		0, 0, 0, 0, voidptr(0)
+		ptr: &C.SDL_DisplayMode(voidptr(0))
 	}
 
 	rc := unsafe {
-		C.SDL_GetDesktopDisplayMode(display_index, &tmp)
+		C.SDL_GetDesktopDisplayMode(display_index, tmp.ptr)
 	}
 
 	if rc != 0 {
@@ -478,11 +483,11 @@ pub fn get_desktop_display_mode(display_index int) ?DisplayMode {
 fn C.SDL_GetCurrentDisplayMode(int, &C.SDL_DisplayMode) int
 pub fn get_current_display_mode(display_index int) ?DisplayMode {
 	tmp := DisplayMode {
-		0, 0, 0, 0, voidptr(0)
+		ptr: &C.SDL_DisplayMode(voidptr(0))
 	}
 
 	rc := unsafe {
-		C.SDL_GetCurrentDisplayMode(display_index, &tmp)
+		C.SDL_GetCurrentDisplayMode(display_index, tmp.ptr)
 	}
 
 	if rc != 0 {
