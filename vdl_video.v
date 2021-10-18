@@ -177,16 +177,8 @@ pub fn (mut this WindowFlags)parse(value u32) {
 		ret = ret | WindowFlags.popup_menu
 	}
 
-	if value & u32(C.SDL_WINDOW_KEYBOARD_GRABBED) == u32(C.SDL_WINDOW_KEYBOARD_GRABBED) {
-		ret = ret | WindowFlags.keyboard_grabbed
-	}
-
 	if value & u32(C.SDL_WINDOW_VULKAN) == u32(C.SDL_WINDOW_VULKAN) {
 		ret = ret | WindowFlags.vulkan
-	}
-
-	if value & u32(C.SDL_WINDOW_METAL) == u32(C.SDL_WINDOW_METAL) {
-		ret = ret | WindowFlags.metal
 	}
 
 	if value & u32(C.SDL_WINDOW_INPUT_GRABBED) == u32(C.SDL_WINDOW_INPUT_GRABBED) {
@@ -218,9 +210,7 @@ pub fn (this WindowFlags)value() u32 {
 	if this.has(.utility) { ret |= u32(C.SDL_WINDOW_UTILITY) }
 	if this.has(.tooltip) { ret |= u32(C.SDL_WINDOW_TOOLTIP) }
 	if this.has(.popup_menu) { ret |= u32(C.SDL_WINDOW_POPUP_MENU) }
-	if this.has(.keyboard_grabbed) { ret |= u32(C.SDL_WINDOW_KEYBOARD_GRABBED) }
 	if this.has(.vulkan) { ret |= u32(C.SDL_WINDOW_VULKAN) }
-	if this.has(.metal) { ret |= u32(C.SDL_WINDOW_METAL) }
 	if this.has(.input_grabbed) { ret |= u32(C.SDL_WINDOW_INPUT_GRABBED) }
 
 	return ret
@@ -794,9 +784,9 @@ pub fn (this Window)set_opacity(opacity f32) bool {
 	return rc == 0
 }
 
-fn C.SDL_GetWindowOpacity(&C.SDL_Window, &f64) int
-pub fn (this Window)opacity() f64 {
-	ret := f64(0)
+fn C.SDL_GetWindowOpacity(&C.SDL_Window, &f32) int
+pub fn (this Window)opacity() f32 {
+	ret := f32(0)
 	unsafe {
 		C.SDL_GetWindowOpacity(this.ptr, &ret)
 	}
