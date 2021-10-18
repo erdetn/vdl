@@ -2,6 +2,6 @@ module vdl
 
 struct C.SDL_Surface {}
 
-pub fn Surface {
+pub struct Surface {
 	ptr &C.SDL_Surface
 }
