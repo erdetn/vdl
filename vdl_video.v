@@ -638,12 +638,6 @@ pub fn (this Window)set_resizable(resizable bool) {
 	C.SDL_SetWindowResizable(this.ptr, C.SDL_bool(tmp))
 }
 
-fn C.SDL_SetWindowAlwaysOnTop(&C.SDL_Window, C.SDL_bool)
-pub fn (this Window)set_always_on_top(on_top bool){
-	tmp := if on_top {C.SDL_bool(C.SDL_TRUE)} else {C.SDL_bool(C.SDL_FALSE)}
-	C.SDL_SetWindowAlwaysOnTop(this.ptr, C.SDL_bool(tmp))
-}
-
 fn C.SDL_ShowWindow(&C.SDL_Window)
 pub fn (this Window)show() {
 	C.SDL_ShowWindow(this.ptr)
@@ -719,42 +713,10 @@ pub fn (this Window)grab(grabbed bool) {
 	C.SDL_SetWindowGrab(this.ptr, C.SDL_bool(tmp_grabbed))
 }
 
-fn C.SDL_SetWindowKeyboardGrab(&C.SDL_Window, C.SDL_bool)
-pub fn (this Window)keyboard_grab(grabbed bool) {
-	tmp_grabbed := if grabbed {
-		C.SDL_bool(C.SDL_TRUE)
-	} else {
-		C.SDL_bool(C.SDL_FALSE)
-	}
-	C.SDL_SetWindowKeyboardGrab(this.ptr, C.SDL_bool(tmp_grabbed))
-}
-
-fn C.SDL_SetWindowMouseGrab(&C.SDL_Window, C.SDL_bool)
-pub fn (this Window)mouse_grab(grabbed bool) {
-	tmp_grabbed := if grabbed {
-		C.SDL_bool(C.SDL_TRUE)
-	} else {
-		C.SDL_bool(C.SDL_FALSE)
-	}
-	C.SDL_SetWindowMouseGrab(this.ptr, C.SDL_bool(tmp_grabbed))
-}
-
 fn C.SDL_GetWindowGrab(&C.SDL_Window) C.SDL_bool
 pub fn (this Window)is_grabbed() bool {
 	rc := C.SDL_GetWindowGrab(this.ptr)
 
-	return rc == C.SDL_bool(C.SDL_TRUE)
-}
-
-fn C.SDL_GetWindowKeyboardGrab(&C.SDL_Window) C.SDL_bool
-pub fn (this Window)is_keyboard_grabbed() bool {
-	rc := C.SDL_GetWindowKeyboardGrab(this.ptr)
-	return rc == C.SDL_bool(C.SDL_TRUE)
-}
-
-fn C.SDL_GetWindowMouseGrab(&C.SDL_Window) C.SDL_bool
-pub fn (this Window)is_mouse_grabbed() bool {
-	rc := C.SDL_GetWindowMouseGrab(this.ptr)
 	return rc == C.SDL_bool(C.SDL_TRUE)
 }
 
