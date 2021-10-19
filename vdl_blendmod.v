@@ -1,7 +1,6 @@
 module vdl
 
 pub enum BlendMode { // SDL_BlendMode
-{
     @none   = C.SDL_BLENDMODE_NONE
     blend   = C.SDL_BLENDMODE_BLEND
     add     = C.SDL_BLENDMODE_ADD
@@ -11,7 +10,7 @@ pub enum BlendMode { // SDL_BlendMode
 
 pub enum BlendOperation { // SDL_BlendOperation
     add          = C.SDL_BLENDOPERATION_ADD
-    subtract     = C.DL_BLENDOPERATION_SUBTRACT
+    subtract     = C.SDL_BLENDOPERATION_SUBTRACT
     rev_subtract = C.SDL_BLENDOPERATION_REV_SUBTRACT
     minimum      = C.SDL_BLENDOPERATION_MINIMUM
     maximum      = C.SDL_BLENDOPERATION_MAXIMUM
@@ -30,7 +29,7 @@ pub enum BlendFactor { // SDL_BlendFactor
     one_minus_dst_alpha = C.SDL_BLENDFACTOR_ONE_MINUS_DST_ALPHA
 }
 
-fn C.SDL_ComposeCustomBlendMode(SDL_BlendFactor,
+fn C.SDL_ComposeCustomBlendMode(C.SDL_BlendFactor,
                  C.SDL_BlendFactor,
                  C.SDL_BlendOperation,
                  C.SDL_BlendFactor,
@@ -41,8 +40,8 @@ pub fn compose_custom_blend_mode(src_color_factor BlendFactor,
 				color_operation  BlendOperation,
 				src_alpha_factor BlendFactor,
 				dst_alpha_factor BlendFactor,
-				alpha_oper       BlendOperation) {
-	return BlenFactor(C.SDL_ComposeCustomBlendMode(
+				alpha_oper       BlendOperation) BlendFactor {
+	return BlendFactor(C.SDL_ComposeCustomBlendMode(
 		C.SDL_BlendFactor(src_color_factor),
 		C.SDL_BlendFactor(dst_color_factor),
 		C.SDL_BlendOperation(color_operation),

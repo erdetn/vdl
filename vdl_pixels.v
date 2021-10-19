@@ -110,10 +110,10 @@ pub enum PixelFormatEnum { // SDL_PixelFormatEnum
 }
 
 struct C.SDL_Color {
-    red   u8
-    green u8
-    blue  u8
-    alpha u8
+    r u8
+    g u8
+    b u8
+    a u8
 }
 
 pub type Color = C.SDL_Color
