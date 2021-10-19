@@ -29,6 +29,8 @@ struct C.SDL_FRect {
 	h f64
 }
 
+pub type FRectangle = C.SDL_FRect
+
 pub fn (this FPoint)str() string {
 	mut str := '<FPoint>{'
 	str += 'x: ${this.x}, '
