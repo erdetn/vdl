@@ -437,7 +437,7 @@ pub enum EventAction { // C.SDL_eventaction
 }
 
 fn C.SDL_PeepEvents(&C.SDL_Event, int, C.SDL_eventaction, u32, u32) int
-pub fn (this Event)peep(num_events int, action EventAction, 
+pub fn (mut this Event)peep(num_events int, action EventAction, 
                         from_event_type EventType, to_event_type EventType) int {
     rc := unsafe {
         C.SDL_PeepEvents(&C.SDL_Event(&this), num_events, C.SDL_eventaction(action), 
@@ -449,7 +449,7 @@ pub fn (this Event)peep(num_events int, action EventAction,
 fn C.SDL_HasEvent(u32) C.SDL_bool
 fn C.SDL_HasEvents(u32, u32) C.SDL_bool
 
-pub fn (this Event)has_event(from_event EventType, to_event EventType) bool {
+pub fn (mut this Event)has_event(from_event EventType, to_event EventType) bool {
     if to_event == EventType.@none {
         rc1 := C.SDL_HasEvent(u32(from_event))
         return rc1 == C.SDL_bool(C.SDL_TRUE)
@@ -461,7 +461,7 @@ pub fn (this Event)has_event(from_event EventType, to_event EventType) bool {
 
 fn C.SDL_FlushEvent(u32)
 fn C.SDL_FlushEvents(u32, u32)
-pub fn (this Event)flush(from_event EventType, to_event EventType) {
+pub fn (mut this Event)flush(from_event EventType, to_event EventType) {
     if to_event == EventType.@none {
         C.SDL_FlushEvent(u32(from_event))
         return
@@ -470,7 +470,7 @@ pub fn (this Event)flush(from_event EventType, to_event EventType) {
 }
 
 fn C.SDL_PollEvent(&C.SDL_Event) int
-pub fn (this Event)poll() bool {
+pub fn (mut this Event)poll() bool {
     mut rc := int(0)
     unsafe {
         rc = C.SDL_PollEvent(&C.SDL_Event(&this))
@@ -480,7 +480,7 @@ pub fn (this Event)poll() bool {
 
 fn C.SDL_WaitEvent(&C.SDL_Event) int
 fn C.SDL_WaitEventTimeout(&C.SDL_Event, int) int
-pub fn (this Event)wait(timeout_ms int) bool {
+pub fn (mut this Event)wait(timeout_ms int) bool {
     mut rc := int(0)
 
     if timeout_ms == 0 {
@@ -496,7 +496,7 @@ pub fn (this Event)wait(timeout_ms int) bool {
 }
 
 fn C.SDL_PushEvent(&C.SDL_Event) int
-pub fn (this Event)push(event Event) bool {
+pub fn (mut this Event)push(event Event) bool {
     tevent := event
     rc := unsafe {
         C.SDL_PushEvent(&C.SDL_Event(&tevent))
@@ -505,7 +505,7 @@ pub fn (this Event)push(event Event) bool {
 }
 
 fn C.SDL_RegisterEvents(int) u32
-pub fn (this Event)register(num_events int) u32 {
+pub fn (mut this Event)register(num_events int) u32 {
     return C.SDL_RegisterEvents(num_events)
 }
 
