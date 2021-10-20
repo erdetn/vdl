@@ -390,9 +390,8 @@ pub:
 } 
 pub type SysWindowEvent = C.SDL_SysWMEvent
 
-union C.SDL_Event{}
-
-pub union C.SDL_Event {
+[typedef]
+union C.SDL_Event {
 pub:
     @type u32
     common CommonEvent
