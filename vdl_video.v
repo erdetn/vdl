@@ -825,7 +825,7 @@ pub enum HitTestResult {
 // SDL_HitTest callback, void *callback_data);
 
 fn C.SDL_DestroyWindow(&C.SDL_Window)
-pub fn (this Window)destroy() {
+pub fn (mut this Window)free() {
 	C.SDL_DestroyWindow(this.ptr)
 }
 
