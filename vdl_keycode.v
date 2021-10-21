@@ -1,6 +1,6 @@
 module vdl
 
-pub enum Keys {
+pub enum KeyCode {
     unknown = C.SDLK_UNKNOWN
 
     @return      = C.SDLK_RETURN // '\r //
@@ -271,6 +271,15 @@ pub enum Keys {
     app1  = C.SDLK_APP1 
     app2  = C.SDLK_APP2 
 
+}
+
+pub fn (this KeyCode)value() int {
+    return int(this)
+}
+
+pub fn (mut this KeyCode)code(key_code int) KeyCode{
+    this = KeyCode(key_code)
+    return this
 }
 
 pub enum Keymod{ //SDL_Keymod
