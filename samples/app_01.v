@@ -38,6 +38,8 @@ fn (mut this Application)loop() {
 		this.update()
 		this.render()
 		this.renderer.clear()
+
+		vdl.delay(10) // delay 10 [ms]
 	}
 }
 
