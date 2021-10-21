@@ -282,20 +282,24 @@ pub fn (mut this KeyCode)code(key_code int) KeyCode{
     return this
 }
 
-pub enum Keymod{ //SDL_Keymod
-    @none = C.KMOD_NONE // 0x0000
-    left_shift = C.KMOD_LSHIFT // 0x0001
+pub enum KeyModifier{ //SDL_Keymod
+    @none       = C.KMOD_NONE // 0x0000
+    left_shift  = C.KMOD_LSHIFT // 0x0001
     right_shift = C.KMOD_RSHIFT // 0x0002
-    left_ctrl = C.KMOD_LCTRL // 0x0040
-    right_ctrl = C.KMOD_RCTRL // 0x0080
-    left_alt = C.KMOD_LALT // 0x0100
-    right_lat = C.KMOD_RALT // 0x0200
-    left_gui = C.KMOD_LGUI // 0x0400
-    right_gui = C.KMOD_RGUI // 0x0800
-    num = C.KMOD_NUM // 0x1000
-    caps = C.KMOD_CAPS // 0x2000
-    mode = C.KMOD_MODE // 0x4000
-    reserved = C.KMOD_RESERVED // 0x8000
+    left_ctrl   = C.KMOD_LCTRL // 0x0040
+    right_ctrl  = C.KMOD_RCTRL // 0x0080
+    left_alt    = C.KMOD_LALT // 0x0100
+    right_lat   = C.KMOD_RALT // 0x0200
+    left_gui    = C.KMOD_LGUI // 0x0400
+    right_gui   = C.KMOD_RGUI // 0x0800
+    num         = C.KMOD_NUM // 0x1000
+    caps        = C.KMOD_CAPS // 0x2000
+    mode        = C.KMOD_MODE // 0x4000
+    reserved    = C.KMOD_RESERVED // 0x8000
+}
+
+pub fn (this KeyModifier)value() int {
+    return int(this)
 }
 
 pub const keymode_ctr   = int(C.KMOD_CTRL)  // (KMOD_LCTRL|KMOD_RCTRL)
