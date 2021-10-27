@@ -15,7 +15,7 @@ fn new_application() Application {
 
 	vdl.init(vdl.InitializeMode.everything)
 
-	this.window = vdl.new_window('App1', 10, 10, 400, 400, vdl.WindowFlags.fullscreen_desktop)
+	this.window = vdl.new_window('App1', 10, 10, 400, 400, vdl.WindowFlags.@none)
 
 	this.renderer = this.window.create_renderer(-1, vdl.RendererFlags.accelerated)
 
