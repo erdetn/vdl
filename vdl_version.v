@@ -14,9 +14,9 @@ fn C.SDL_GetVersion(&C.SDL_version)
 pub fn get_version() Version {
 	this := Version{0, 0, 0}
 	unsafe {
-		C.SDL_GetRevision(&this)
+		C.SDL_GetVersion(&this)
 	}
-	return This
+	return this
 }
 
 fn C.SDL_GetRevision() &char
@@ -35,7 +35,7 @@ pub fn (this Version) revision_number() int {
 
 pub fn (this Version) str() string {
 	mut rstr := 'SDL2 version: <'
-	rst += '$this.major, $this.minor, $this.patch>'
+	rstr += '$this.major, $this.minor, $this.patch>'
 	return rstr
 }
 
