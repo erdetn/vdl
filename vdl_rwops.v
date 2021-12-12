@@ -1,6 +1,8 @@
-module vdl 
+// Copyright(C) 2021 Erdet Nasufi. All rights reserved.
 
-struct C.SDL_RWops{}
+module vdl
+
+struct C.SDL_RWops {}
 
 fn C.SDL_RWFromFile(file &char, mode &char) &C.SDL_RWops
 fn C.SDL_RWFromFP(voidptr, C.SDL_bool) &C.SDL_RWops
@@ -15,7 +17,7 @@ fn C.SDL_RWclose(&C.SDL_RWops)
 fn C.SDL_LoadFile_RW(&C.SDL_RWops, &C.size_t, int) voidptr
 fn C.SDL_LoadFile(&char, &C.size_t) voidptr
 
-fn C.SDL_ReadU8(&C.SDL_RWops)   u8
+fn C.SDL_ReadU8(&C.SDL_RWops) u8
 fn C.SDL_ReadLE16(&C.SDL_RWops) u16
 fn C.SDL_ReadBE16(&C.SDL_RWops) u16
 fn C.SDL_ReadLE32(&C.SDL_RWops) u32
@@ -23,7 +25,7 @@ fn C.SDL_ReadBE32(&C.SDL_RWops) u32
 fn C.SDL_ReadLE64(&C.SDL_RWops) u64
 fn C.SDL_ReadBE64(&C.SDL_RWops) u64
 
-fn C.SDL_WriteU8(&C.SDL_RWops,   u8)
+fn C.SDL_WriteU8(&C.SDL_RWops, u8)
 fn C.SDL_WriteLE16(&C.SDL_RWops, u16)
 fn C.SDL_WriteBE16(&C.SDL_RWops, u16)
 fn C.SDL_WriteLE32(&C.SDL_RWops, u32)

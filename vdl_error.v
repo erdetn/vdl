@@ -1,3 +1,5 @@
+// Copyright(C) 2021 Erdet Nasufi. All rights reserved.
+
 module vdl
 
 fn C.SDL_SetError(&char) int
@@ -12,7 +14,7 @@ pub fn set_error(message string) {
 fn C.SDL_GetError() &char
 pub fn get_error() string {
 	cstr := C.SDL_GetError()
-	return unsafe {cstr.vstring()}
+	return unsafe { cstr.vstring() }
 }
 
 fn C.SDL_ClearError()
@@ -22,11 +24,11 @@ pub fn clear_erro() {
 
 pub enum ErrorCode {
 	out_of_memory = C.SDL_ENOMEM
-    error_read    = C.SDL_EFREAD
-    error_write   = C.SDL_EFWRITE
-    error_seek    = C.SDL_EFSEEK
-    unsupported   = C.SDL_UNSUPPORTED
-    last_error    = C.SDL_LASTERROR
+	error_read = C.SDL_EFREAD
+	error_write = C.SDL_EFWRITE
+	error_seek = C.SDL_EFSEEK
+	unsupported = C.SDL_UNSUPPORTED
+	last_error = C.SDL_LASTERROR
 }
 
 fn C.SDL_Error(int) int

@@ -1,19 +1,21 @@
+// Copyright(C) 2021 Erdet Nasufi. All rights reserved.
+
 module vdl
 
-pub struct KeySym {   // C.SDL_Keysym
-    scancode ScanCode // C.SDL_Scancode (physical key code)
-    sym      KeyCode  // C.SDL_Keycode  (virtual  key code)
-    mod      u16      // key modifier
-    unused   u32
+pub struct KeySym { // C.SDL_Keysym
+	scancode ScanCode // C.SDL_Scancode (physical key code)
+	sym      KeyCode  // C.SDL_Keycode  (virtual  key code)
+	mod      u16      // key modifier
+	unused   u32
 }
 
 fn C.SDL_GetModState() C.SDL_Keymod
-pub fn (this KeySym)modifier_state() KeyModifier {
+pub fn (this KeySym) modifier_state() KeyModifier {
 	return KeyModifier(C.SDL_GetModState())
 }
 
 fn C.SDL_SetModState(C.SDL_Keymod)
-pub fn (this KeySym)set_modifier_state(modifier KeyModifier) {
+pub fn (this KeySym) set_modifier_state(modifier KeyModifier) {
 	C.SDL_SetModState(C.SDL_Keymod(modifier))
 }
 

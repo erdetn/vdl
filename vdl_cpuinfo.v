@@ -1,3 +1,5 @@
+// Copyright(C) 2021 Erdet Nasufi. All rights reserved.
+
 module vdl
 
 fn C.SDL_GetCPUCount() int

@@ -1,12 +1,14 @@
+// Copyright(C) 2021 Erdet Nasufi. All rights reserved.
+
 module vdl
 
 pub enum PowerState { // SDL_PowerState
-    unknown    = C.SDL_POWERSTATE_UNKNOWN
-    on_battery = C.SDL_POWERSTATE_ON_BATTERY
-    no_battery = C.SDL_POWERSTATE_NO_BATTERY
-    charging   = C.SDL_POWERSTATE_CHARGING
-    charged    = C.SDL_POWERSTATE_CHARGED
-} 
+	unknown = C.SDL_POWERSTATE_UNKNOWN
+	on_battery = C.SDL_POWERSTATE_ON_BATTERY
+	no_battery = C.SDL_POWERSTATE_NO_BATTERY
+	charging = C.SDL_POWERSTATE_CHARGING
+	charged = C.SDL_POWERSTATE_CHARGED
+}
 
 fn C.SDL_GetPowerInfo(&int, &int) C.SDL_PowerState
 
@@ -29,5 +31,5 @@ pub fn battery_time() int {
 	unsafe {
 		C.SDL_GetPowerInfo(&btr, voidptr(0))
 	}
-	return int(btr/60) // in minutes
+	return int(btr / 60) // in minutes
 }

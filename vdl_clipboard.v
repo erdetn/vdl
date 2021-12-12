@@ -1,4 +1,7 @@
+// Copyright(C) 2021 Erdet Nasufi. All rights reserved.
+
 module vdl
+
 
 fn C.SDL_SetClipboardText(&char) int
 pub fn set_clipboard_text(text string) u32 {

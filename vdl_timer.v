@@ -1,3 +1,5 @@
+// Copyright(C) 2021 Erdet Nasufi. All rights reserved.
+
 module vdl
 
 fn C.SDL_GetTicks() u32
@@ -19,4 +21,5 @@ fn C.SDL_Delay(u32)
 pub fn delay(in_ms u32) {
 	C.SDL_Delay(in_ms)
 }
+
 // Timers are not supported //
