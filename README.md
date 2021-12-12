@@ -81,7 +81,7 @@ WRAPPED:
 - [x] `SDL_touch.h`
 - [ ] `SDL_ttf.h`
 - [ ] ~~`SDL_types.h`~~ no need for translation. Only `SDL_stdinc.h` is included.
-- [ ] `SDL_version.h`
+- [x] `SDL_version.h`
 - [x] `SDL_video.h` translated to `vdl_video.v`. 
 - [ ] `SDL_vulkan.h`
 
