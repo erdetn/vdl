@@ -706,9 +706,12 @@ pub fn (this Window) fullscreen(real_fullscreen bool) bool {
 	return rc == 0
 }
 
-// SDL_Surface * SDLCALL SDL_GetWindowSurface(SDL_Window * window);
-// TODO:
 fn C.SDL_GetWindowSurface(&C.SDL_Window) &C.SDL_Surface
+pub fn (this Window)surface() Surface {
+    return Surface {
+        ptr: C.SDL_GetWindowSurface(this.ptr)
+    }
+}
 
 fn C.SDL_UpdateWindowSurface(&C.SDL_Window) int
 pub fn (this Window) update_surface() bool {
