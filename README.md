@@ -57,8 +57,8 @@ WRAPPED:
 - [ ] `SDL_revision.h`
 - [x] `SDL_rwops.h` translated to `vdl_rwops.v`.
 - [x] `SDL_scancode.h` translated to `vdl_scancode.v`.
-- [ ] `SDL_sensor.h`
-- [ ] `SDL_hape.h`
+- [x] `SDL_sensor.h`
+- [ ] `SDL_shape.h`
 - [ ] ~~`SDL_stdinc.h`~~. No need to translate for now. It contains macros and helper functions.
 - [x] `SDL_surface.h` translated to `vdl_surface.v`.
 - [ ] `SDL_system.h`
@@ -76,7 +76,7 @@ WRAPPED:
 - [ ] ~~`SDL_test_md5.h`~~
 - [ ] ~~`SDL_test_memory.h`~~
 - [ ] ~~`SDL_test_random.h`~~
-- [ ] `SDL_thread.h`
+- [ ] ~~`SDL_thread.h`~~ for now, VDL will not support SDL's threads API, but we will use threads from V.
 - [x] `SDL_timer.h` translated to `vdl_timer.v`.
 - [x] `SDL_touch.h`
 - [ ] `SDL_ttf.h`
