@@ -77,7 +77,7 @@ pub fn (this StreamIO) close() {
 fn C.SDL_LoadFile_RW(&C.SDL_RWops, &C.size_t, int) voidptr
 fn C.SDL_LoadFile(&char, &C.size_t) voidptr
 
-fn C.SDL_ReadU8(&Ci.SDL_RWops) u8
+fn C.SDL_ReadU8(&C.SDL_RWops) u8
 pub fn (this StreamIO) read_u8() u8 {
 	return C.SDL_ReadU8(this.ptr)
 }
