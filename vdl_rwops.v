@@ -52,6 +52,13 @@ pub fn (this StreamIO) offset() i64 {
 }
 
 fn C.SDL_RWread(&C.SDL_RWops, voidptr, C.size_t, C.size_t) C.size_t
+pub fn (this StreamIO) read(length u32) u32 {
+	buffer := []byte{len: length, cap: length}
+	unsafe {
+		rc := u32(C.SDL_RWread(this.ptr, &buffer[0], 1, C.size_t(length)))
+	}
+	return rc
+}
 
 fn C.SDL_RWwrite(&C.SDL_RWops, voidptr, C.size_t, C.size_t) C.size_t
 pub fn (this StreamIO) write_bytes(data []byte) u32 {
