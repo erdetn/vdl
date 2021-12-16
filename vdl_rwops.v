@@ -32,7 +32,7 @@ pub fn new_streamio() StreamIO {
 }
 
 fn C.SDL_FreeRW(&C.SDL_RWops)
-pub fn (this StreamIO) free() {
+pub fn (mut this StreamIO) free() {
 	C.SDL_FreeRW(this.ptr)
 }
 
@@ -52,10 +52,11 @@ pub fn (this StreamIO) offset() i64 {
 }
 
 fn C.SDL_RWread(&C.SDL_RWops, voidptr, C.size_t, C.size_t) C.size_t
-pub fn (this StreamIO) read(length u32) u32 {
+pub fn (this StreamIO) read(length int) u32 {
 	buffer := []byte{len: length, cap: length}
+        mut rc := u32(0)
 	unsafe {
-		rc := u32(C.SDL_RWread(this.ptr, &buffer[0], 1, C.size_t(length)))
+		rc = u32(C.SDL_RWread(this.ptr, &buffer[0], C.size_t(1), C.size_t(length)))
 	}
 	return rc
 }
@@ -64,7 +65,7 @@ fn C.SDL_RWwrite(&C.SDL_RWops, voidptr, C.size_t, C.size_t) C.size_t
 pub fn (this StreamIO) write_bytes(data []byte) u32 {
 	mut rc := u32(0)
 	unsafe {
-		rc = C.SD_RWwrite(this.ptr, &data[0], 1, data.len)
+		rc = C.SDL_RWwrite(this.ptr, &data[0], C.size_t(1), C.size_t(data.len))
 	}
 	return rc
 }
