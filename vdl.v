@@ -4,6 +4,7 @@ module vdl
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 #flag -I /usr/include/
 #flag -I /usr/include/SDL2
@@ -11,6 +12,7 @@ module vdl
 #flag -DSDL_DISABLE_IMMINTRIN_H
 
 #flag -lSDL2
+#flag -lSDL_image
 
 [flag]
 pub enum InitializeMode {

@@ -27,7 +27,7 @@ WRAPPED:
 - [ ] `SDL.h`
 - [ ] `SDL_haptic.h`
 - [ ] `SDL_hints.h`
-- [ ] `SDL_image.h`
+- [x] `SDL_image.h` make sure to install `libsdl-image1.2`, `libsdl-image1.2-dev`, `libsdl2-image-2.0-0` and `libsdl2-image-dev`.
 - [ ] `SDL_joystick.h`
 - [x] `SDL_keyboard.h` translated to `vdl_keyboard.v`.
 - [x] `SDL_keycode.h` translated to `vdl_keycode.v`.
