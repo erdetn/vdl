@@ -51,7 +51,7 @@ WRAPPED:
 - [x] `SDL_pixels.h` translated to `vdl_pixels.v`.
 - [ ] `SDL_platform.h`
 - [x] `SDL_power.h` translated to `vdl_power.v`.
-- [ ] `SDL_quit.h`
+- [x] `SDL_quit.h`
 - [x] `SDL_rect.h` translated to `vdl_rect.v`.
 - [x] `SDL_render.h` translated to `vdl_render.v`.
 - [ ] `SDL_revision.h`
