@@ -8,7 +8,7 @@ WRAPPED:
 - [x] ~~`SDL2_framerate.h`~~ requires DLL on Windows only. 
 - [ ] `SDL2_gfxPrimitives.h`
 - [ ] `SDL2_imageFilter.h`
-- [ ] `SDL2_rotozoom.h`
+- [x] `SDL2_rotozoom.h`. This requires to install `libsdl-gfx*` and `libsdl2-gfx*`.
 - [ ] `SDL_assert.h`
 - [ ] `SDL_atomic.h`
 - [ ] `SDL_audio.h`

@@ -13,6 +13,7 @@ module vdl
 
 #flag -lSDL2
 #flag -lSDL_image
+#flag -lSDL_gfx
 
 [flag]
 pub enum InitializeMode {
